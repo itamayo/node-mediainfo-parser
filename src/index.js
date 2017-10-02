@@ -37,7 +37,7 @@ export default function parse(buffer, callback = () => {}) {
 }
 
 function exec(mediaPath, callback = () => {}) {
-  const mediainfo = childProcess.spawn('mediainfo', ['--Full', '--Output=XML', mediaPath]);
+  const mediainfo = childProcess.spawn('./mediainfo', ['--Full', '--Output=XML', mediaPath]);
   let output = '';
   mediainfo.stdout.on('data', (data) => { output += data.toString('utf8'); });
   mediainfo.on('close', () => parse(output, callback));
